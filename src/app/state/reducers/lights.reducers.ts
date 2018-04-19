@@ -34,17 +34,21 @@ export function lightsReducer(state = initialState, action: LightActions.Actions
     case (LightActions.TURN_ON_LIGHT): {
       const oldState = {...state};
 
+      if (!oldState.colors[action.payload.color]) {
+        oldState.litLights++;
+      }
       oldState.colors[action.payload.color] = true;
-      oldState.litLights++;
 
       return oldState;
     }
 
     case (LightActions.TURN_OFF_LIGHT): {
       const oldState = {...state};
+      if (oldState.colors[action.payload.color]) {
+        oldState.litLights--;
+      }
 
       oldState.colors[action.payload.color] = false;
-      oldState.litLights--;
 
       return oldState;
     }

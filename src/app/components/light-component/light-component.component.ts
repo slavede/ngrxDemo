@@ -20,7 +20,13 @@ export class LightComponentComponent {
   updateThreshold = new Subject<any>();
 
   temperature = 0;
-  isLit = false;
+  isLit = this.store.select((state) => {
+    if (state.lights) {
+      return state.lights.colors[this.color];
+    } else {
+      return false;
+    }
+  });
 
   constructor(
     private lightService: LightService,
@@ -34,22 +40,16 @@ export class LightComponentComponent {
       this.temperature = result.temperature;
 
       if (this.temperature > this.threshold) {
-        if (!this.isLit) {
-          this.store.dispatch(new LightActions.TurnOnLight({
-            color: this.color
-          }));
-        }
-        this.isLit = true;
+        this.store.dispatch(new LightActions.TurnOnLight({
+          color: this.color
+        }));
       } else {
-        if (this.isLit) {
-          this.store.dispatch(new LightActions.TurnOffLight({
-            color: this.color
-          }));
-        }
-
-        this.isLit = false;
+        this.store.dispatch(new LightActions.TurnOffLight({
+          color: this.color
+        }));
       }
     });
+
   }
 
 }

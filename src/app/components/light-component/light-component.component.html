@@ -1,4 +1,4 @@
-<div class="background" *ngIf="isLit" [ngStyle]="{'background-color':color}"></div>
+<div class="background" *ngIf="(isLit | async) === true" [ngStyle]="{'background-color':color}"></div>
 <button class="update-temperature" (click)="fetchTemperature()">Update temperature</button>
 <span class="text-holder threshold">Threshold: {{threshold}}</span>
 <span class="text-holder current-temperature">Temperature: {{temperature}}</span>
