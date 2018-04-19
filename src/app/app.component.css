@@ -1,0 +1,17 @@
+.rows {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.row {
+  display: flex;
+  width: 100%;
+  height: 33%;
+}
+
+app-light-component, app-light-count-component {
+  width: 33.33%;
+  height: 100%;
+  display: inline-block;
+  background: #f8eaea;
+}

@@ -1,0 +1,38 @@
+:host {
+  position: relative;
+}
+.background {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.update-temperature {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.threshold {
+  position: absolute;
+  top: 5px;
+  right: 5px;;
+}
+
+.current-temperature {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+}
+
+
+.text-holder {
+  width: 140px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
