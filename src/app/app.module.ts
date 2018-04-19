@@ -8,6 +8,9 @@ import { LightComponentComponent } from './components/light-component/light-comp
 import { LightCountComponentComponent } from './components/light-count-component/light-count-component.component';
 import { LightService } from './services/light.service';
 
+import { StoreModule } from '@ngrx/store';
+
+import * as AppReducers from './state/app.reducers';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { LightService } from './services/light.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(AppReducers.reducers),
   ],
   providers: [LightService],
   bootstrap: [AppComponent]

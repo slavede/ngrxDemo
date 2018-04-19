@@ -2,6 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { LightService } from '../../services/light.service';
 import { Subject } from 'rxjs/Subject';
 
+import { Store } from '@ngrx/store';
+import * as LightReducers from '../../state/reducers/lights.reducers';
+import * as LightActions from '../../state/reducers/lights.actions';
+import { AppState } from '../../state/app.state';
+
 @Component({
   selector: 'app-light-component',
   templateUrl: './light-component.component.html',
@@ -18,7 +23,8 @@ export class LightComponentComponent {
   isLit = false;
 
   constructor(
-    private lightService: LightService
+    private lightService: LightService,
+    private store: Store<AppState>
   ) { }
 
 
@@ -28,15 +34,17 @@ export class LightComponentComponent {
       this.temperature = result.temperature;
 
       if (this.temperature > this.threshold) {
-        // if previous was not lit, increase counter
         if (!this.isLit) {
-          this.lightService.increaseLightCounter();
+          this.store.dispatch(new LightActions.TurnOnLight({
+            color: this.color
+          }));
         }
         this.isLit = true;
       } else {
-        // if previous was lit, decrease counter
         if (this.isLit) {
-          this.lightService.decreaseLightCounter();
+          this.store.dispatch(new LightActions.TurnOffLight({
+            color: this.color
+          }));
         }
 
         this.isLit = false;
