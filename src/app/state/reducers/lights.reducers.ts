@@ -47,7 +47,7 @@ export function lightsReducer(state = initialState, action: LightActions.Actions
           ...state.colors,
           [action.payload.color]: true
         },
-        litLights: state.colors[action.payload.color] ? state.litLights + 1 : state.litLights
+        litLights: !state.colors[action.payload.color] ? state.litLights + 1 : state.litLights
       };
 
     }
