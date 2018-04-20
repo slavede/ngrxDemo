@@ -11,6 +11,8 @@ import { LightService } from './services/light.service';
 import { StoreModule } from '@ngrx/store';
 
 import * as AppReducers from './state/app.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import * as AppReducers from './state/app.reducers';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(AppReducers.reducers),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [LightService],
   bootstrap: [AppComponent]
