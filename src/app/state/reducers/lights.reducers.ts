@@ -32,21 +32,39 @@ const initialState: State = {
 export function lightsReducer(state = initialState, action: LightActions.Actions) {
   switch (action.type) {
     case (LightActions.TURN_ON_LIGHT): {
-      const oldState = {...state};
+      // const oldState = {...state};
 
-      oldState.colors[action.payload.color] = true;
-      oldState.litLights++;
+      // oldState.colors[action.payload.color] = true;
+      // oldState.litLights++;
 
-      return oldState;
+      // return oldState;
+
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          [action.payload.color]: true
+        },
+        litLights: state.litLights + 1
+      };
     }
 
     case (LightActions.TURN_OFF_LIGHT): {
-      const oldState = {...state};
+      // const oldState = {...state};
 
-      oldState.colors[action.payload.color] = false;
-      oldState.litLights--;
+      // oldState.colors[action.payload.color] = false;
+      // oldState.litLights--;
 
-      return oldState;
+      // return oldState;
+
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          [action.payload.color]: false
+        },
+        litLights: state.litLights - 1
+      };
     }
   }
 }
