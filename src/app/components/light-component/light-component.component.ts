@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { LightService } from '../../services/light.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -10,7 +10,8 @@ import { AppState } from '../../state/app.state';
 @Component({
   selector: 'app-light-component',
   templateUrl: './light-component.component.html',
-  styleUrls: ['./light-component.component.css']
+  styleUrls: ['./light-component.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightComponentComponent {
 
